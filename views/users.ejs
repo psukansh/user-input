@@ -18,6 +18,11 @@
 <body>
 	<%- include('header')-%>
 
+	<br/>
+	
+	
+
+
 		<table class="table">
 			<thead>
 				<tr>
@@ -38,14 +43,11 @@
 							<%= item.username%>
 						</td>
 						<td>
-							<%= item.description%>
+							<%= item.comment%>
 						</td>
 						<td>
-							<script>
-								var datetime= new Date().toLocaleString();
-								document.write(datetime);
+							<%= item.date%>
 
-							</script>
 						</td>
 					</tr>
 					<%})%>

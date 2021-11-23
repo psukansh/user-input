@@ -8,7 +8,7 @@
 }
 
 .form{
-	width: 100%;
+	width: 700px;
 	height: 100%;
 }
 
@@ -42,8 +42,13 @@ h3{
 	color: white;
 }
 
+input,textarea{
+	border: 1px solid black;
+	outline: none;
+}
+
 .submit{
-	width: 300px;
+	width: 500px;
 	background-color: blue;
 	font-size: 15px;
 	border-radius: 5px;

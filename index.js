@@ -9,17 +9,12 @@ const session = require("express-session");
 
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
+
+
 app.use(express.static(path.join(__dirname, "/views")));
 app.set("view engine", "ejs");
 
-app.use(
-  session({
-    secret: "geeksforgeeks",
-    saveUninitialized: true,
-    resave: true,
-  })
-);
-app.use(flash());
+
 // app.set('views', path.join(__dirname, 'views'));
 
 //database connection
@@ -40,12 +35,20 @@ app.get("/", function (req, res) {
   res.render("index");
 });
 
+
+//insert query 
+
 app.post("/submit", function (req, res) {
   var details = req.body;
+  let today = new Date();
+
+
+
+
 
   var sql = "INSERT INTO tbl_users SET ?";
 
-  connection.query(sql, details, function (err, result) {
+  connection.query(sql, [details], function (err, result) {
     if (err) throw err;
     console.log("data inserted successfully");
   });
@@ -53,7 +56,13 @@ app.post("/submit", function (req, res) {
   res.render("submit");
 });
 
+
+// select query 
+
+
 app.get("/users", (req, res) => {
+
+
   var sql2 = "SELECT * FROM tbl_users where Id=(SELECT LAST_INSERT_ID())";
 
   connection.query(sql2, function (err, rows, result) {
@@ -61,6 +70,9 @@ app.get("/users", (req, res) => {
     res.render("users", { items: rows });
   });
 });
+
+
+// listen port 
 
 app.listen(PORT, () => {
   console.log(`The website running on port ${PORT}`);
